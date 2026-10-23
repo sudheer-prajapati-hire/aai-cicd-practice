@@ -1,0 +1,24 @@
+name: Local Practice CI/CD
+
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup PHP Environment
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+
+    - name: Run Validation Check
+      run: |
+        echo "Running code checks..."
+        php -l index.php
+        echo "CI/CD Pipeline executed successfully!"
